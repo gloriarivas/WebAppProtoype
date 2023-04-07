@@ -1,0 +1,328 @@
+<!--
+Mobile web development
+Assignment: 2
+Created by: Gloria Rivas-Bonilla
+email:      grivas8325@conestogac.on.ca
+-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <title>JQuery Mobile App Template</title>
+
+        <!--jQuery-->
+        <script src="js/lib/jquery-2.1.4.js"></script>
+        <!--jQuery mobile-->
+        <script src="js/lib/jquery.mobile-1.4.5.js"></script>
+        <!--jQuery mobile style sheet-->
+        <link rel="stylesheet" href="css/lib/jquery.mobile-1.4.5.css">
+
+        <!--jQuery validation library-->
+        <script src="js/lib/jquery.validate.js"></script>
+
+        <!--our script-->
+        <script src="js/GRBDAL.js"></script>
+        <script src="js/GRBdatabase.js"></script>
+        <script src="js/GRBfacade.js"></script>
+        <script src="js/GRBglobal.js"></script>
+        <script src="js/GRButil.js"></script>
+        <!--our styles-->
+        <link rel="stylesheet" href="css/GRBmystyle.css">
+
+
+    </head>
+    <body>
+
+<!------------------------------------home page---------------------------------------------------->
+        <div id="GRBHomePage" data-role="page">
+            <header data-role="header" data-position="fixed" data-theme="a">
+                <h1>GRB Feedback A3</h1>
+            </header>
+            <!--navigation bar-->
+            <div data-role="navbar" data-iconpos="top">
+                <ul>
+                    <li>
+                        <a href="#GRBHomePage" data-icon="home"
+                           class="ui-btn-active ui-state-persist">Home</a>
+                    </li>
+                    <li>
+                        <a href="#GRBAddFeedbackPage" data-icon="plus">Add</a>
+                    </li>
+                    <li>
+                        <a href="#GRBViewFeedbackPage" data-icon="grid">Reviews</a>
+                    </li>
+                    <li>
+                        <a href="#GRBSettingsPage" data-icon="gear">Settings</a>
+                    </li>
+                </ul>
+            </div>
+            <!--main page-->
+            <section data-role="content">
+                <div>
+                    <h1>Gloria Rivas-Bonilla's Feedback A3 App</h1>
+                    <p>Welcome to the Gloria Rivas-Bonilla's Feedback A3 app. A prototype designed
+                       for mobile programming class. This is the first iteration of the app to keep
+                       track of different places you visited along with your reviews.</p>
+                    <img src="img/Winter-Tea-icon.png">
+                    <p>Please feel free to contact me if you have any suggestions!</p>
+                    <a href="#" data-role="button" data-icon="plus">Call: 519.748.5220</a>
+                    <a href="#" data-role="button" data-icon="plus">grivas8325@conestogac.on.ca</a>
+                    <label for="btnConestoga">Website:</label>
+                    <a href="#" id="btnConestoga" data-role="button" data-icon="plus">Conestoga College</a>
+                </div>
+            </section>
+            <footer data-role="footer" data-position="fixed" data-theme="a">
+                <h1> &copy; 2023 Gloria Rivas-Bonilla </h1>
+            </footer>
+        </div>
+
+
+<!------------------------------------add page----------------------------------------------------->
+        <div id="GRBAddFeedbackPage" data-role="page">
+            <header data-role="header" data-position="fixed" data-theme="a">
+                <h1>Add a Feedback</h1>
+            </header>
+            <!--navigation bar-->
+            <div data-role="navbar" data-iconpos="top">
+                <ul>
+                    <li>
+                        <a href="#GRBHomePage" data-icon="home">Home</a>
+                    </li>
+                    <li>
+                        <a href="#GRBAddFeedbackPage" data-icon="plus"
+                           class="ui-btn-active ui-state-persist">Add</a>
+                    </li>
+                    <li>
+                        <a href="#GRBViewFeedbackPage" data-icon="grid">Reviews</a>
+                    </li>
+                    <li>
+                        <a href="#GRBSettingsPage" data-icon="gear">Settings</a>
+                    </li>
+                </ul>
+            </div>
+            <!--main page-->
+            <section data-role="content">
+                <div>
+                    <section data-role="content" class="border">
+                        <form id="frmAdd" name="frmAdd">
+                            <label for="txtName">Business Name:</label>
+                            <input type="text" id="txtName" name="txtName">
+
+                            <label for="cmbType">Type:</label>
+                            <select id="cmbType" name="cmbType" data-role="comboBox">
+                            </select>
+
+                            <label for="txtEmail">Reviewer Email:</label>
+                            <input type="text" id="txtEmail" name="txtEmail">
+
+                            <label for="txtComments">Reviewer Comments:</label>
+                            <textarea id="txtComments" name="txtComments"></textarea>
+
+                            <label for="dtReviewDate">Review Date:</label>
+                            <input type="date" id="dtReviewDate" name="dtReviewDate">
+
+                            <input type="checkbox" id="chkAddRatings" name="chkAddRatings">
+                            <label for="chkAddRatings">Do you want to add your ratings?</label>
+
+                            <!--hidden content until check box is checked-->
+                            <div name="hide" id="hide">
+                                <label for="txtFoodQuality">Food Quality (0-5):</label>
+                                <input type="number" name="txtFoodQuality" id="txtFoodQuality"
+                                       value="0">
+
+                                <label for="txtService">Service (0-5):</label>
+                                <input type="number" name="txtService" id="txtService" value="0">
+
+                                <label for="txtValue">Value (0-5):</label>
+                                <input type="number" name="txtValue" id="txtValue" value="0">
+
+                                <label for="txtOverallRating">Overall Rating (calculated):</label>
+                                <input type="text" name="txtOverallRating" id="txtOverallRating"
+                                       readonly>
+                            </div>
+
+                            <button type="button" id="btnSave" name="btnSave" data-inline="true"
+                                    class="ui-btn-active ui-state-persist">Save</button>
+                        </form>
+                    </section>
+
+                </div>
+            </section>
+            <footer data-role="footer" data-position="fixed" data-theme="a">
+                <h1> &copy; 2023 Gloria Rivas-Bonilla </h1>
+            </footer>
+        </div>
+
+
+<!--------------------------------------reviews page----------------------------------------------->
+        <div id="GRBViewFeedbackPage" data-role="page">
+            <header data-role="header" data-position="fixed" data-theme="a">
+                <h1>List of Reviews</h1>
+            </header>
+            <!--navigation bar-->
+            <div data-role="navbar" data-iconpos="top">
+                <ul>
+                    <li>
+                        <a href="#GRBHomePage" data-icon="home">Home</a>
+                    </li>
+                    <li>
+                        <a href="#GRBAddFeedbackPage" data-icon="plus">Add</a>
+                    </li>
+                    <li>
+                        <a href="#GRBViewFeedbackPage" data-icon="grid"
+                           class="ui-btn-active ui-state-persist">Reviews</a>
+                    </li>
+                    <li>
+                        <a href="#GRBSettingsPage" data-icon="gear">Settings</a>
+                    </li>
+                </ul>
+            </div>
+            <!--main page-->
+            <section data-role="content">
+                <div>
+                    <section data-role="content" class="border">
+                        <ul data-role="listview" class="ui-listview-inset" data-icon="false"
+                            id="lstShops">
+
+                        </ul>
+                    </section>
+
+                </div>
+            </section>
+            <footer data-role="footer" data-position="fixed" data-theme="a">
+                <h1> &copy; 2023 Gloria Rivas-Bonilla </h1>
+            </footer>
+        </div>
+
+<!---------------------------modify feedback page-------------------------------------------------->
+        <div id="GRBModifyFeedbackPage" data-role="page">
+            <header data-role="header" data-position="fixed" data-theme="a">
+                <h1>Modify Feedback</h1>
+            </header>
+            <!--navigation bar-->
+            <div data-role="navbar" data-iconpos="top">
+                <ul>
+                    <li>
+                        <a href="#GRBHomePage" data-icon="home">Home</a>
+                    </li>
+                    <li>
+                        <a href="#GRBAddFeedbackPage" data-icon="plus">Add</a>
+                    </li>
+                    <li>
+                        <a href="#GRBViewFeedbackPage" data-icon="grid"
+                           class="ui-btn-active ui-state-persist">Reviews</a>
+                    </li>
+                    <li>
+                        <a href="#GRBSettingsPage" data-icon="gear">Settings</a>
+                    </li>
+                </ul>
+            </div>
+            <!--main page-->
+            <section data-role="content">
+                <div>
+                    <form id="frmModifyFeedback" name="frmModifyFeedback">
+                        <label for="txtNameModify">Business Name:</label>
+                        <input type="text" id="txtNameModify" name="txtNameModify">
+
+                        <label for="cmbTypeModify">Type:</label>
+                        <select id="cmbTypeModify" name="cmbTypeModify">
+                        </select>
+
+                        <label for="txtEmailModify">Reviewer Email:</label>
+                        <input type="text" id="txtEmailModify" name="txtEmailModify">
+
+                        <label for="txtCommentsModify">Reviewer Comments:</label>
+                        <textarea id="txtCommentsModify" name="txtCommentsModify"></textarea>
+
+                        <label for="dtReviewDateModify">Review Date:</label>
+                        <input type="date" id="dtReviewDateModify" name="dtReviewDateModify">
+
+                        <input type="checkbox" id="chkAddRatingsModify" name="chkAddRatingsModify">
+                        <label for="chkAddRatingsModify">Do you want to add your ratings?</label>
+
+                        <!--hidden content until check box is checked-->
+                        <div name="hideModify" id="hideModify">
+                            <label for="txtFoodQualityModify">Food Quality (0-5):</label>
+                            <input type="number" name="txtFoodQualityModify"
+                                   id="txtFoodQualityModify"value="0">
+
+                            <label for="txtServiceModify">Service (0-5):</label>
+                            <input type="number" name="txtServiceModify" id="txtServiceModify"
+                                   value="0">
+
+                            <label for="txtValueModify">Value (0-5):</label>
+                            <input type="number" name="txtValueModify" id="txtValueModify"
+                                   value="0">
+
+                            <label for="txtOverallRatingModify">Overall Rating (calculated):</label>
+                            <input type="text" name="txtOverallRatingModify"
+                                   id="txtOverallRatingModify"
+                                   readonly>
+                        </div>
+
+                        <div data-role="controlgroup" data-type="horizontal">
+                            <button type="button" data-role="button" id="btnCancel"
+                                    name="btnCancel">Cancel
+                            </button>
+                            <button type="button" data-role="button" id="btnDelete" name="btnDelete"
+                                    data-theme="b">Delete
+                            </button>
+                            <button type="button" data-role="button" id="btnUpdate" name="btnUpdate"
+                                    class="ui-btn-active">Update</button>
+                        </div>
+                    </form>
+
+                </div>
+            </section>
+            <footer data-role="footer" data-position="fixed" data-theme="a">
+                <h1> &copy; 2023 Gloria Rivas-Bonilla </h1>
+            </footer>
+        </div>
+
+
+<!--------------------------------Settings page---------------------------------------------------->
+        <div id="GRBSettingsPage" data-role="page">
+            <header data-role="header" data-position="fixed" data-theme="a">
+                <h1>Modify Feedback</h1>
+            </header>
+            <!--navigation bar-->
+            <div data-role="navbar" data-iconpos="top">
+                <ul>
+                    <li>
+                        <a href="#GRBHomePage" data-icon="home">Home</a>
+                    </li>
+                    <li>
+                        <a href="#GRBAddFeedbackPage" data-icon="plus">Add</a>
+                    </li>
+                    <li>
+                        <a href="#GRBViewFeedbackPage" data-icon="grid">Reviews</a>
+                    </li>
+                    <li>
+                        <a href="#GRBSettingsPage" data-icon="gear" class="ui-btn-active ui-state-persist">Settings</a>
+                    </li>
+                </ul>
+            </div>
+            <!--main page-->
+            <section data-role="content">
+                <div>
+                    <form id="frmSettings">
+                        <label for="txtDefaultEmail">Default reviewer Email:</label>
+                        <input type="text" id="txtDefaultEmail" name="txtDefaultEmail"
+                               value="grivas8325@conestogac.on.ca">
+                        <button type="button" class="ui-btn-active" id="btnSaveDefault" name="saveDefault">
+                            Save Defaults</button>
+                        <button type="button" data-theme="b" id="btnClearDatabase" name="btnClearDatabase">
+                            Clear Database
+                        </button>
+                    </form>
+
+                </div>
+            </section>
+            <footer data-role="footer" data-position="fixed" data-theme="a">
+                <h1> &copy; 2023 Gloria Rivas-Bonilla </h1>
+            </footer>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,23 @@
+/*
+    File Name: GRBmystyle
+
+Revision History:
+      Gloria Rivas-Bonilla, 2/16/2023 : Created
+*/
+
+/*Validation style*/
+label.error{
+    color: #F00;
+    font-weight: bold;
+}
+input.error,
+select.error,
+textarea.error {
+    border: 1px red solid;
+}
+img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 20%;
+}
